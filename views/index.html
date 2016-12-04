@@ -11,6 +11,7 @@
     <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
     <script src="/components/set-image.js"></script>
     <script src="/components/update-raycaster.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
 </head>
 <body>
 <a-scene>
@@ -42,7 +43,7 @@
     <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
     <!-- Image links. -->
-    <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
+    <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4" visible="false">
         <a-plane class="link" height="1" width="1"
                  material="shader: flat; src: #cubes-thumb"
                  event-set__1="_event: mousedown; scale: 1 1 1"
@@ -82,5 +83,43 @@
                   raycaster="objects: .link"></a-cursor>
     </a-entity>
 </a-scene>
+<script>
+    if (annyang) {
+        // Let's define our first command. First the text we expect, and then the function it should call
+        var commands = {
+            'show menu': function() {
+                var links = document.getElementById("links");
+                console.log("voice command: show menu");
+                links.setAttribute("visible", "true");
+            },
+            'hide menu': function() {
+                console.log("voice command: hide menu");
+                var links = document.getElementById("links");
+                links.setAttribute("visible", "false");
+            },
+            'cubes': function() {
+                console.log("voice command: hide menu");
+                var image_360 = document.getElementById("image-360");
+                image_360.setAttribute("src", "#cubes");
+            },
+            'city': function() {
+                console.log("voice command: hide menu");
+                var image_360 = document.getElementById("image-360");
+                image_360.setAttribute("src", "#city");
+            },
+            'lake': function() {
+                console.log("voice command: hide menu");
+                var image_360 = document.getElementById("image-360");
+                image_360.setAttribute("src", "#sechelt");
+            },
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+</script>
 </body>
 </html>
