@@ -42,11 +42,12 @@
     <a-entity id="annyang" annyang-voice-recognition></a-entity>
 
     <!-- 360-degree image. -->
-    <a-sky id="image-360" radius="10" src="#city" voice-command="command: hide menu; target: links; attribute: visible; value: false;"></a-sky>
+    <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
     <!-- Image links. -->
     <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4" visible="false"
-              voice-command="command: show menu; target: links; attribute: visible; value: true;">
+              voice-command__show="command: show menu; target: links; attribute: visible; value: true;"
+              voice-command__hide="command: hide menu; target: links; attribute: visible; value: false;">
         <a-plane class="link" height="1" width="1"
                  material="shader: flat; src: #cubes-thumb"
                  event-set__1="_event: mousedown; scale: 1 1 1"

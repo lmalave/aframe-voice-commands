@@ -20,6 +20,7 @@ AFRAME.registerSystem('voice-command', {
     }
 });
 AFRAME.registerComponent('voice-command', {
+    multiple: true,
     schema: {
         command: { type: 'string' },
         target: { type: 'string' },
