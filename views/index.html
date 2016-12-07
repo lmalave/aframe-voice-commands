@@ -12,43 +12,7 @@
     <script src="/components/set-image.js"></script>
     <script src="/components/update-raycaster.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
-    <script>
-        AFRAME.registerSystem('voice-command', {
-            init: function () {
-                console.log("in voice-command system init");
-                this.entities = [];
-            },
-            registerMe: function (comp) {
-                this.entities.push(comp);
-                console.log("in register, comp: "+comp.data.command);
-            },
-            unregisterMe: function (comp) {
-                var index = this.entities.indexOf(comp);
-                this.entities.splice(index, 1);
-            },
-            play: function() {
-                console.log("in system play, entities: "+this.entities);
-            }
-        });
-        AFRAME.registerComponent('voice-command', {
-            schema: {
-                command: { type: 'string' },
-                target: { type: 'string' },
-                attribute: { type: 'string' },
-                value: { type: 'string' },
-            },
-            init: function () {
-                this.system.registerMe(this);
-            },
-            remove: function () {
-                this.system.unregisterMe(this);
-            },
-            play: function() {
-                console.log("in component play, data: "+this.data.command);
-
-            }
-        });
-    </script>
+    <script src="/components/voice-commands.js"></script>
 </head>
 <body>
 <a-scene>
@@ -75,6 +39,7 @@
             update-raycaster="#cursor"></a-plane>
         </script>
     </a-assets>
+    <a-entity id="annyang" annyang-voice-recognition></a-entity>
 
     <!-- 360-degree image. -->
     <a-sky id="image-360" radius="10" src="#city" voice-command="command: hide menu; target: links; attribute: visible; value: false;"></a-sky>
@@ -110,7 +75,7 @@
                  event-set__4="_event: mouseleave; scale: 1 1 1"
                  set-image="on: click; target: #image-360; src: #sechelt"
                  sound="on: click; src: #click-sound"
-                 voice-command="command: lake; target: image-360; attribute: src; value: #lake;"
+                 voice-command="command: lake; target: image-360; attribute: src; value: #sechelt;"
                  update-raycaster="#cursor"></a-plane>
     </a-entity>
 
@@ -124,65 +89,5 @@
                   raycaster="objects: .link"></a-cursor>
     </a-entity>
 </a-scene>
-<script>
-    var scene = document.querySelector('a-scene');
-    if (scene.hasLoaded) {
-        run();
-    } else {
-        scene.addEventListener('loaded', run);
-    }
-    function run () {
-        console.log("in run()");
-        if (annyang) {
-            // Let's define our first command. First the text we expect, and then the function it should call
-
-            var voiceCommandSystem = document.querySelector('a-scene').systems['voice-command'];
-
-            console.log("in annyang, entities: "+voiceCommandSystem.entities);
-
-
-            var commands = { "test" : function () {
-                console.log("test voice command");
-                }
-            };
-
-            var commandsMap = {};
-
-            console.log("before loop, commands so far: "+Object.keys(commands));
-            console.log("num commands: "+voiceCommandSystem.entities.length);
-            for (var i = 0; i < voiceCommandSystem.entities.length; i++) {
-                console.log("i: "+i);
-                var voiceCommand = voiceCommandSystem.entities[i];
-                commandsMap[voiceCommand.data.command] = voiceCommand;
-                console.log("voiceCommand: "+voiceCommand.data.command);
-                commands[voiceCommand.data.command] = function() {
-                    console.log("in annyang command callback");
-               };
-                //console.log("in loop, commands so far: "+JSON.stringify(commands));
-            }
-
-            console.log("done with loop commands: "+Object.keys(commands));
- //           console.log("done with loop commandsMap: "+JSON.stringify(commandsMap));
-
-             // Add our commands to annyang
-            annyang.addCommands(commands);
-
-            annyang.addCallback('resultMatch', function(userSaid, commandText, phrases) {
-                console.log("userSaid: "+ userSaid); // sample output: 'hello'
-                console.log("commandText: "+commandText); // sample output: 'hello (there)'
-                console.log("phrases: "+phrases); // sample output: ['hello', 'halo', 'yellow', 'polo', 'hello kitty']
-                var voiceCommand = commandsMap[commandText];
-                console.log("in resultMatch callback, voiceCommand: "+voiceCommand);
-                console.log("invoking function for: "+voiceCommand.data.command);
-                var target = document.getElementById(voiceCommand.data.target);
-                console.log("target is: "+target);
-                target.setAttribute(voiceCommand.data.attribute, voiceCommand.data.value);
-            });
-
-            // Start listening. You can call this here, or attach this call to an event, button, etc.
-            annyang.start();
-        }
-    }
-</script>
 </body>
 </html>
