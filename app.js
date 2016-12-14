@@ -31,6 +31,14 @@ app.get('/', function(req, res) {
     res.render('index.html');
 });
 
+app.get('/image-gallery', function(req, res) {
+    res.render('image-gallery.html');
+});
+
+app.get('/teleport', function(req, res) {
+    res.render('teleport.html');
+});
+
 // Start the server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
