@@ -13,23 +13,6 @@
     <script src="/components/update-raycaster.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
     <script src="/components/voice-commands.js"></script>
-    <script>
-        AFRAME.registerComponent('teleporter', {
-
-            init: function () {
-                console.log("in teleporter init");
-            },
-            showRaycaster: function() {
-                console.log("in showRaycaster");
-            },
-            teleport: function() {
-                console.log("teleport");
-            },
-            play: function() {
-                console.log("in teleporter play");
-            }
-        });
-    </script>
 </head>
 <body>
 <a-scene>
@@ -57,16 +40,13 @@
         </script>
     </a-assets>
     <a-entity id="annyang" annyang-voice-recognition></a-entity>
-    <a-entity id="testTeleporter" teleporter></a-entity>
-    <a-entity id="teleportCommand" voice-command="command: teleport; type: function; targetElement: testTeleporter; targetComponent: teleporter; function: showRaycaster; keyCode: 32"></a-entity>
-    <a-entity id="teleportCommand" voice-command="command: go; type: function; targetElement: testTeleporter; targetComponent: teleporter; function: teleport; keyCode: 13"></a-entity>
     <!-- 360-degree image. -->
     <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
     <!-- Image links. -->
     <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4" visible="false"
-              voice-command__show="command: show menu; type: attribute; targetElement: links; attribute: visible; value: true;"
-              voice-command__hide="command: hide menu; type: attribute; targetElement: links; attribute: visible; value: false;">
+              voice-command__show="command: show menu; type: attribute; attribute: visible; value: true;"
+              voice-command__hide="command: hide menu; type: attribute; attribute: visible; value: false;">
         <a-plane class="link" height="1" width="1"
                  material="shader: flat; src: #cubes-thumb"
                  event-set__1="_event: mousedown; scale: 1 1 1"
@@ -75,7 +55,7 @@
                  event-set__4="_event: mouseleave; scale: 1 1 1"
                  set-image="on: click; target: #image-360; src: #cubes"
                  sound="on: click; src: #click-sound"
-                 voice-command="command: cubes; type: attribute; targetElement: image-360; attribute: src; value: #cubes;"
+                 voice-command="command: cubes; type: attribute; targetElement: #image-360; attribute: src; value: #cubes;"
                  update-raycaster="#cursor"></a-plane>
         <a-plane class="link" height="1" width="1"
                  material="shader: flat; src: #city-thumb"
@@ -85,7 +65,7 @@
                  event-set__4="_event: mouseleave; scale: 1 1 1"
                  set-image="on: click; target: #image-360; src: #city"
                  sound="on: click; src: #click-sound"
-                 voice-command="command: city; type: attribute; targetElement: image-360; attribute: src; value: #city;"
+                 voice-command="command: city; type: attribute; targetElement: #image-360; attribute: src; value: #city;"
                  update-raycaster="#cursor"></a-plane>
         <a-plane class="link" height="1" width="1"
                  material="shader: flat; src: #sechelt-thumb"
@@ -95,7 +75,7 @@
                  event-set__4="_event: mouseleave; scale: 1 1 1"
                  set-image="on: click; target: #image-360; src: #sechelt"
                  sound="on: click; src: #click-sound"
-                 voice-command="command: lake; type: attribute; targetElement: image-360; attribute: src; value: #sechelt;"
+                 voice-command="command: lake; type: attribute; targetElement: #image-360; attribute: src; value: #sechelt;"
                  update-raycaster="#cursor"></a-plane>
     </a-entity>
 

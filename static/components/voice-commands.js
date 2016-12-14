@@ -24,7 +24,7 @@ AFRAME.registerComponent('voice-command', {
     schema: {
         command: { type: 'string' },
         type: { type: 'string' },
-        targetElement: { type: 'string' },
+        targetElement: { type: 'selector' },
         targetComponent: { type: 'string' },
         function: { type: 'string' },
         attribute: { type: 'string' },
@@ -33,6 +33,9 @@ AFRAME.registerComponent('voice-command', {
     },
     init: function () {
         this.system.registerMe(this);
+        if (!this.data.targetElement) {
+            this.data.targetElement = this.el;
+        }
         if (this.data.keyCode) {
             window.addEventListener('keyup', this.onKeyup.bind(this));
         }
@@ -42,19 +45,13 @@ AFRAME.registerComponent('voice-command', {
     },
     play: function() {
         console.log("in voice-command play, command: "+this.data.command+", type: "+this.data.type);
-        /*if (this.data.type == 'function') {
-            var targetElement = document.getElementById(this.data.targetElement);
-            console.log("targetElement: "+targetElement+", components: "+targetElement.components);
-            var targetComponent = targetElement.components[this.data.targetComponent];
-            console.log("targetComponent: "+targetComponent);
-            targetComponent[this.data.function]();
-        } */
     },
     executeCommand: function () {
-        var targetElement = document.getElementById(this.data.targetElement);
+        var targetElement = this.data.targetElement;
         if (this.data.type == 'attribute') {
-            target.setAttribute(this.data.attribute, this.data.value);
+            targetElement.setAttribute(this.data.attribute, this.data.value);
         } else if (this.data.type == 'function') {
+            //console("targetElement: "+targetElement+", components"+targetElement.components);
             var targetComponent = targetElement.components[this.data.targetComponent];
             targetComponent[this.data.function]();
         }
