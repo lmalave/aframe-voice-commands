@@ -61,9 +61,15 @@
     <a-sky src="#sky" rotation="0 -90 0"></a-sky>
 
     <!-- Camera + cursor. -->
+    <a-entity id="teleportMarker" visible="false"
+              geometry="primitive: cylinder"
+              material="color: white; shader: flat; transparent: true; opacity: 0.3"
+              position="-5 -5 -5"
+              scale="0.5 2 0.5"
+    ></a-entity>
  <a-entity id="character" position="0 2 0">
      <a-entity camera look-controls>
-        <a-entity id="cursor" teleporter="character: #character"
+        <a-entity id="cursor" teleporter="character: #character; marker: #teleportMarker"
                   raycaster="objects: .teleportTarget"
                   cursor
                   position="0 0 -1"
