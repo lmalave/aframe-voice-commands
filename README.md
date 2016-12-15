@@ -26,9 +26,16 @@ This scene is based on the Hello Metaverse aframe.io demo: [https://aframe.io/ex
 
 # Overview
 
-This node.js app demonstrates a voice command framework for use in aframe.
+The `aframe-voice-commands` components provide voice commands that you can easily integrate into an aframe scene. 
 
 The voice command can set an attribute of a target element, or can also execute a function on a target Component.
+
+The `voice-commands.js` file defines 2 components:
+
+* A `voice-command` component that can be added to any entity to define an action to take based on a voice command
+* An `annyang-speech-recognition` component that provides the voice recognition implementation based on the annyang Speech Recognition library:  [https://github.com/TalAter/annyang](https://github.com/TalAter/annyang)
+
+Although this implementation uses annyang for speech recognition, any speech recognition javascript library can be integrated using the same pattern as `annyang-speech-recognition`
 
 ## Usage
 
@@ -60,21 +67,6 @@ Note that multiple instances of the `voice-command` component are allowed on the
 
 ### Schema
 
-schema:
-```javascript
- {
-        command: { type: 'string' },
-        type: { type: 'string' },
-        targetElement: { type: 'selector' },
-        targetComponent: { type: 'string' },
-        function: { type: 'string' },
-        attribute: { type: 'string' },
-        value: { type: 'string' },
-        keyCode: { type: 'string' }
-    }
- ```
-   
-
 | Name  | Description |
 | ------------- | ------------- |
 | **command**   | the text of the voice command  |
@@ -98,11 +90,11 @@ schema:
 <a-entity voice-command="command: go; type: function; targetElement: #cursor; targetComponent: teleporter; function: teleport; keyCode: 13"></a-entity>
 ```
 
-# Running locally
+# Running demos locally
 
-Node.js and npm are required to run the demo on a local server.
-
-First execute:  `npm install`
+A node.js app is provided here with the Image Gallery and Teleport demos described above. 
+ 
+To run, first execute:  `npm install`
 
 Then execute: `npm start`
 
