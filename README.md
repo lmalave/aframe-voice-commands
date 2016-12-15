@@ -90,6 +90,13 @@ Note that multiple instances of the `voice-command` component are allowed on the
 <a-entity voice-command="command: go; type: function; targetElement: #cursor; targetComponent: teleporter; function: teleport; keyCode: 13"></a-entity>
 ```
 
+## Browser Compatibility
+
+This implementation is currently only compatible with the Google Chrome browser since it is based on that browser's Speech Recognition API. 
+
+This implementation has been tested on Chrome for desktop (Mac OS) and Android, but should also be compatible with the latest Chrome browser on any platform (Windows Desktop, iOS).
+
+
 # Running demos locally
 
 A node.js app is provided here with the Image Gallery and Teleport demos described above. 
