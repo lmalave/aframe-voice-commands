@@ -15,3 +15,11 @@ First execute:  npm install
 Then execute: npm start
 
 The application will then be running on http://localhost:8080
+
+
+# Public Demo
+
+Demos are available publicly at:
+
+[http://aframe-voice-commands.appspot.com]
+ 
