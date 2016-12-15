@@ -1,3 +1,25 @@
+# Public Demo
+
+Demos are available publicly at:
+
+[http://aframe-voice-commands.appspot.com](http://aframe-voice-commands.appspot.com)
+ 
+## Image gallery demo
+
+Say "show menu" to bring up menu
+
+Say "cubes", "city", or "lake" to show any of the 3 images
+
+Say "hide menu" to hide menu
+
+## Teleporter demo
+
+Say "teleport" to activate raycaster
+
+Say "go" to teleport to location of marker (with raycaster activated)
+
+Say "cancel" to deactivate raycaster
+
 # Voice commands for aframe
 
 This node.js app demonstrates a voice command framework for use in aframe.
@@ -21,5 +43,5 @@ The application will then be running on http://localhost:8080
 
 Demos are available publicly at:
 
-[http://aframe-voice-commands.appspot.com]
+[http://aframe-voice-commands.appspot.com](http://aframe-voice-commands.appspot.com)
  
