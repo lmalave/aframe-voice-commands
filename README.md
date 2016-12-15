@@ -32,9 +32,37 @@ The voice command can set an attribute of a target element, or can also execute 
 
 ## Usage
 
+### Adding to aframe scene
+
+To integrate aframe-voice-commands to an aframe scene, the following must be added:
+
+* The `annyang` voice recognition script and the voice-commands.js script
+```html
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
+    <script src="/components/voice-commands.js"></script>
+```
+
+* An entity with the `annyang-voice-recognition` component
+```html
+    <a-entity id="annyang" annyang-voice-recognition></a-entity>
+```
+
+* One or more entities with the `voice-command` component
+```html
+<a-entity id="menu"
+              voice-command__show="command: show menu; type: attribute; attribute: visible; value: true;"
+              voice-command__hide="command: hide menu; type: attribute; attribute: visible; value: false;">
+              ...
+              ...
+</a-entity>
+```
+Note that multiple instances of the `voice-command` component are allowed on the same entity as shown above.
+
 ### Schema
 
-`schema: {
+schema:
+```javascript
+ {
         command: { type: 'string' },
         type: { type: 'string' },
         targetElement: { type: 'selector' },
@@ -43,36 +71,36 @@ The voice command can set an attribute of a target element, or can also execute 
         attribute: { type: 'string' },
         value: { type: 'string' },
         keyCode: { type: 'string' }
-    }`
-    
-**command**: the text of the voice command
+    }
+ ```
+   
 
-**type**: "attribute" to change an attribute or "function" to execute a function
-
-**targetElement**: the element that contains the attribute to change or contains the component to execute the function on.   This is optional since by default the target will be entity that the component belongs to. 
-
-**targetComponent**: the component to execute the function on. 
-
-**function**: the name of the function.  For now the function must take no parameters.
-
-**attribute**:  the attribute to change
-
-**value**: the value to change the attribute to
-
-**keyCode**: an optional numeric ASCII code to use as a shortcut (useful for development when quiet is a necessity)
+| Name  | Description |
+| ------------- | ------------- |
+| **command**   | the text of the voice command  |
+| **type**  | "attribute" to change an attribute or "function" to execute a function  |
+| **targetElement**  | the component to execute the function on. |
+| **targetComponent**  | the element that contains the attribute to change or contains the component to execute the function on.   This is optional since by default the target will be entity that the component belongs to.  |
+| **function**  | the name of the function.  For now the function must take no parameters.  |
+| **attribute**  |the attribute to change  |
+| **value**  | "the value to change the attribute to  |
+| **keyCode**  | n optional numeric ASCII code to use as a shortcut (useful for development when quiet is a necessity)  |
+        
 
 ### Example: setting an attribute on target element
 
-`voice-command="command: city; type: attribute; targetElement: #image-360; attribute: src; value: #city;"
-`
+```xml
+<a-entity voice-command="command: city; type: attribute; targetElement: #image-360; attribute: src; value: #city;"></a-entity>
+```
 ### Example: executing a function on target Component
 
-`voice-command="command: go; type: function; targetElement: #cursor; targetComponent: teleporter; function: teleport; keyCode: 13"
-`
+```xml
+<a-entity voice-command="command: go; type: function; targetElement: #cursor; targetComponent: teleporter; function: teleport; keyCode: 13"></a-entity>
+```
 
 # Running locally
 
-Node.js and npm are required to run this app.
+Node.js and npm are required to run the demo on a local server.
 
 First execute:  `npm install`
 
