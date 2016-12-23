@@ -20,12 +20,13 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const app = express();
 
-nunjucks.configure('views', {
+nunjucks.configure('examples/views', {
     autoescape: true,
     express: app
 });
 
-app.use(express.static('static'));
+app.use(express.static('dist'));
+app.use(express.static('examples/static'));
 
 app.get('/', function(req, res) {
     res.render('index.html');

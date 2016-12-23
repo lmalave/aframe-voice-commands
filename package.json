@@ -1,18 +1,38 @@
 {
-  "name": "appengine-hello-world",
-  "description": "Simple Hello World Node.js sample for Google App Engine",
-  "version": "0.0.1",
-  "private": true,
-  "license": "Apache Version 2.0",
-  "author": "Google Inc.",
-  "engines": {
-    "node": ">=4.3.2"
+  "name": "aframe-voice-commands",
+  "version": "0.1.0",
+  "description": "Simple voice command component for A-Frame",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
   },
   "scripts": {
-    "start": "node app.js"
+    "dev": "node examples/app.js",
+    "dist": "webpack index.js dist/aframe-voice-commands.js && webpack -p index.js dist/aframe-voice-commands.min.js",
+    "postpublish": "npm run dist",
+    "start": "npm run dev"
   },
-  "dependencies": {
-    "express": "4.14.0",
-    "nunjucks": "3.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmalave/aframe-voice-commands.git"
+  },
+  "keywords": [
+    "webvr",
+    "aframe-vr",
+    "aframe-component",
+    "aframe",
+    "mozvr",
+    "vr"
+  ],
+  "author": "Leonardo Malave <leo@malave.tech>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lmalave/aframe-voice-commands/issues"
+  },
+  "homepage": "https://github.com/lmalave/aframe-voice-commands#readme",
+  "devDependencies": {
+    "webpack": "^1.12.9",
+    "express": "^4.14.0",
+    "nunjucks": "^3.0.0"
   }
 }
