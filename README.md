@@ -6,7 +6,7 @@
 
 Demos are available publicly at:
 
-[http://aframe-voice-commands.appspot.com](http://aframe-voice-commands.appspot.com)
+[https://storage.googleapis.com/aframe-voice-commands.appspot.com/examples/index.html](https://storage.googleapis.com/aframe-voice-commands.appspot.com/examples/index.html)
  
 ## Image gallery demo
 
