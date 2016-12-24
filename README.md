@@ -1,3 +1,7 @@
+
+
+![](https://storage.googleapis.com/aframe-voice-commands.appspot.com/images/aframe-voice-commands.png)
+
 # Public Demo
 
 Demos are available publicly at:
@@ -105,4 +109,4 @@ To run, first execute:  `npm install`
 
 Then execute: `npm start`
 
-The application will then be running on http://localhost:8080
+The application will then be running on http://localhost:8080/examples
