@@ -1,6 +1,6 @@
 
 
-![](https://storage.googleapis.com/aframe-voice-commands.appspot.com/images/aframe-voice-commands.png)
+![](https://storage.googleapis.com/aframe-voice-commands.appspot.com/images/show_hide_menu.png)
 
 # Public Demo
 
