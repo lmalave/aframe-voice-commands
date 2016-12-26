@@ -47,10 +47,10 @@ Although this implementation uses annyang for speech recognition, any speech rec
 
 To integrate aframe-voice-commands to an aframe scene, the following must be added:
 
-* The `annyang` voice recognition script and the voice-commands.js script
+* The `annyang` voice recognition script and the aframe-voice-commands.js script (found in the dist folder)
 ```html
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
-    <script src="/components/voice-commands.js"></script>
+    <script src="aframe-voice-commands.js"></script>
 ```
 
 * An entity with the `annyang-voice-recognition` component
@@ -109,4 +109,4 @@ To run, first execute:  `npm install`
 
 Then execute: `npm start`
 
-The application will then be running on http://localhost:8080/examples
+The application will then be running on http://localhost:8000 and your default browser should automatically open on this page

@@ -44,6 +44,10 @@
 /* 0 */
 /***/ function(module, exports) {
 
+	if (typeof AFRAME === 'undefined') {
+	    throw new Error('Component attempted to register before AFRAME was available.');
+	}
+
 	AFRAME.registerSystem('voice-command', {
 	    init: function () {
 	        console.log("in voice-command system init");
@@ -93,8 +97,10 @@
 	        console.log("in voice-command play, command: "+this.data.command+", type: "+this.data.type);
 	    },
 	    executeCommand: function () {
+	        console.log("in executeCommand for: "+this.data.targetElement);
 	        var targetElement = this.data.targetElement;
 	        if (this.data.type == 'attribute') {
+	            console.log("about to change attribute "+this.data.attribute+" to: "+this.data.value);
 	            targetElement.setAttribute(this.data.attribute, this.data.value);
 	        } else if (this.data.type == 'function') {
 	            //console("targetElement: "+targetElement+", components"+targetElement.components);
@@ -115,6 +121,8 @@
 	    },
 	    play: function() {
 	        if (annyang) {
+	            console.log("annyang: "+annyang);
+	            console.log("annyang.addCommands: "+annyang.addCommands);
 	            var voiceCommandSystem = document.querySelector('a-scene').systems['voice-command'];
 	            var commands = {};
 	            var commandsMap = {};
