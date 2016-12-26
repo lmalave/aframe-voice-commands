@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <title>360&deg; Image Gallery</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
     <script src="https://rawgit.com/aframevr/aframe/917c06889ee1f3f79b7b1bbd9eab9815f9512503/dist/aframe.min.js"></script>
+    <script src="build.js"></script>
     <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
     <script src="components/set-image.js"></script>
     <script src="components/update-raycaster.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
-    <script src="../dist/aframe-voice-commands.js"></script>
 </head>
 <body>
 <a-scene>
@@ -55,7 +55,7 @@
                  event-set__4="_event: mouseleave; scale: 1 1 1"
                  set-image="on: click; target: #image-360; src: #cubes"
                  sound="on: click; src: #click-sound"
-                 voice-command="command: cubes; type: attribute; targetElement: #image-360; attribute: src; value: #cubes;"
+                 voice-command="command: go to cubes; type: attribute; targetElement: #image-360; attribute: src; value: #cubes;"
                  update-raycaster="#cursor"></a-plane>
         <a-plane class="link" height="1" width="1"
                  material="shader: flat; src: #city-thumb"
@@ -65,7 +65,7 @@
                  event-set__4="_event: mouseleave; scale: 1 1 1"
                  set-image="on: click; target: #image-360; src: #city"
                  sound="on: click; src: #click-sound"
-                 voice-command="command: city; type: attribute; targetElement: #image-360; attribute: src; value: #city;"
+                 voice-command="command: go to city; type: attribute; targetElement: #image-360; attribute: src; value: #city;"
                  update-raycaster="#cursor"></a-plane>
         <a-plane class="link" height="1" width="1"
                  material="shader: flat; src: #sechelt-thumb"
@@ -75,7 +75,7 @@
                  event-set__4="_event: mouseleave; scale: 1 1 1"
                  set-image="on: click; target: #image-360; src: #sechelt"
                  sound="on: click; src: #click-sound"
-                 voice-command="command: lake; type: attribute; targetElement: #image-360; attribute: src; value: #sechelt;"
+                 voice-command="command: go to lake; type: attribute; targetElement: #image-360; attribute: src; value: #sechelt;"
                  update-raycaster="#cursor"></a-plane>
     </a-entity>
 

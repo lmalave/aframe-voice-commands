@@ -1,3 +1,10 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require('../index.js');
+},{"../index.js":2}],2:[function(require,module,exports){
+if (typeof AFRAME === 'undefined') {
+    throw new Error('Component attempted to register before AFRAME was available.');
+}
+
 AFRAME.registerSystem('voice-command', {
     init: function () {
         console.log("in voice-command system init");
@@ -47,8 +54,10 @@ AFRAME.registerComponent('voice-command', {
         console.log("in voice-command play, command: "+this.data.command+", type: "+this.data.type);
     },
     executeCommand: function () {
+        console.log("in executeCommand for: "+this.data.targetElement);
         var targetElement = this.data.targetElement;
         if (this.data.type == 'attribute') {
+            console.log("about to change attribute "+this.data.attribute+" to: "+this.data.value);
             targetElement.setAttribute(this.data.attribute, this.data.value);
         } else if (this.data.type == 'function') {
             //console("targetElement: "+targetElement+", components"+targetElement.components);
@@ -69,6 +78,8 @@ AFRAME.registerComponent('annyang-voice-recognition', {
     },
     play: function() {
         if (annyang) {
+            console.log("annyang: "+annyang);
+            console.log("annyang.addCommands: "+annyang.addCommands);
             var voiceCommandSystem = document.querySelector('a-scene').systems['voice-command'];
             var commands = {};
             var commandsMap = {};
@@ -93,3 +104,5 @@ AFRAME.registerComponent('annyang-voice-recognition', {
 
 });
 
+
+},{}]},{},[1]);

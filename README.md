@@ -12,7 +12,7 @@ Demos are available publicly at:
 
 Say "show menu" to bring up menu
 
-Say "cubes", "city", or "lake" to show any of the 3 images
+Say "go to cubes", "go to city", or "go to lake" to show any of the 3 images
 
 Say "hide menu" to hide menu
 
@@ -20,11 +20,11 @@ This scene is based on the Image Gallery aframe.io demo:  [https://github.com/af
 
 ## Teleporter demo
 
-Say "teleport" to activate raycaster
+Say "start move" to activate raycaster
 
-Say "go" to teleport to location of marker (with raycaster activated)
+Say "go to" to teleport to location of marker (with raycaster activated)
 
-Say "cancel" to deactivate raycaster
+Say "cancel move" to deactivate raycaster
 
 This scene is based on the Hello Metaverse aframe.io demo: [https://aframe.io/examples/showcase/hello-metaverse/](https://aframe.io/examples/showcase/hello-metaverse/)
 
